@@ -1,0 +1,14 @@
+<p>propietario works!</p>
+
+<form [formGroup]="form">
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre" [ngClass]="{'errorInput':campos.nombre.errors && enviado}">
+    <br>
+    <label>Teléfono</label>
+    <input type="text" formControlName="telefono" [ngClass]="{'errorInput':campos.telefono.errors && enviado}">
+    <br>
+
+    <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+</form>
+
+
