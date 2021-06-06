@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+:root {
+    --habi: rgb(124, 1, 255);
+}
+
+.background-habi {
+    background-color: var(--habi) !important;
+}
+
+.margin-body {
+    margin: 70px 20px;
+}
+
+.icons-habi {
+    font-size: 80px;
+}
+
+.card-shadow {
+    box-shadow: 1px 2px 7px -1px rgb(0 0 0 / 35%);
+    -webkit-box-shadow: 1px 2px 7px -1px rgb(0 0 0 / 35%);
+    margin: 10px auto;
+}
+
+.titles-habi {
+    margin: 10px auto 20px;
+}
+
+.hide {
+    display: none;
+}
+
+.card-text {
+    font-size: 0.80em;
+    margin: 5px auto;
+}
+
+.bolder-habi {
+    font-weight: bold;
+    margin-right: 5px;
+}

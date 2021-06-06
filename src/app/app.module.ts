@@ -9,10 +9,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { PropietarioComponent } from './modules/propietario/propietario.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PropietariosComponent } from './modules/propietarios/propietarios.component';
 
 const routes: Routes = [
   {path: "chuck", component: ChuckComponent},
-  {path: "propietario/crear", component: PropietarioComponent} 
+  {path: "propietarios", component: PropietariosComponent} 
 ]
 
 @NgModule({
@@ -20,6 +21,7 @@ const routes: Routes = [
     AppComponent,
     ChuckComponent,
     PropietarioComponent,
+    PropietariosComponent,
   ],
   imports: [
     BrowserModule,
