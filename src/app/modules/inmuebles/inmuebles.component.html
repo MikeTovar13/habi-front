@@ -1,0 +1,62 @@
+<div class="margin-body">
+
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <h3 class="titles-habi">Inmuebles</h3>
+            </div>
+            <div class="col">
+                <div class="btn-group align-right">
+                    <button class="btn btn-light btn-sm dropdown-toggle shadow-sm dropdown-habi" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Ordenar por
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="orderBy('fecha', 0)"><i class="bi bi-arrow-up green"></i> Fecha creación </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('fecha', 1)"><i class="bi bi-arrow-down red"></i> Fecha creación </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('localidad', 0)"><i class="bi bi-arrow-up green"></i> Localidad</a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('localidad', 1)" ><i class="bi bi-arrow-down red"></i> Localidad </a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+            
+            <div class="col" *ngFor="let inmueble of inmuebles">
+                <div class="card card-shadow" style="width: 18rem;">
+                    <div class="text-center">
+                        <i class="bi bi-house-door-fill icons-habi"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 text-primary">Número referencia: {{inmueble.id}}</h5>
+                        <p class="card-text">
+                            <span class="bolder-habi">Área:</span> {{inmueble.area}} m²
+                        </p>
+                        <p class="card-text">
+                            <span class="bolder-habi">Habitaciones:</span> {{inmueble.habitaciones}}
+                        </p>
+                        <p class="card-text">
+                            <span class="bolder-habi">Dirección:</span> {{inmueble.direccion}}
+                        </p>
+                        <p class="card-text">
+                            <span class="bolder-habi">Localidad:</span> {{inmueble.localidad}}
+                        </p>
+                        <p class="card-text">
+                            <span class="bolder-habi">Propietario:</span> {{inmueble.propietario}}
+                        </p>
+                        <h5 class="card-title mt-4"><span class="currency">{{inmueble.precio}}</span> COP</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class=" text-center">
+                            <a class="btn btn-danger btn-sm" (click)="deleteInmueble(inmueble)" >Eliminar inmueble <i
+                                class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

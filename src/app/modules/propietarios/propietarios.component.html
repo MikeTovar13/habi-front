@@ -1,8 +1,18 @@
 <div class="margin-body">
 
     <div class="container-fluid">
-        <div class="row">
-            <h3 class="titles-habi">Propietarios</h3>
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <h3 class="titles-habi">Propietarios</h3>
+            </div>
+            <div class="col">
+                <a class="btn btn-success btn-sm align-right" routerLink="/propietario/crear">Agregar propietario <i class="bi bi-plus-circle"></i></a>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
+            <div class="col-12">
+                <p>Aquí encontraras el listado de todos los propietarios en el sistema</p>
+            </div>
         </div>
     </div>
 
@@ -17,242 +27,23 @@
                     <div class="card-body">
                         <h5 class="card-title">{{persona.nombre}}</h5>
                         <p class="card-text">
-                            <span class="bolder-habi">Tel:</span> <a href="tel:{{persona.telefono}}">{{persona.telefono}}</a>
+                            <span class="bolder-habi">Tel:</span> <a
+                                href="tel:{{persona.telefono}}">{{persona.telefono}}</a>
                         </p>
                         <p class="card-text">
-                            <span class="bolder-habi">Correo:</span> <a href="mailto:{{persona.correo}}">{{persona.correo}}</a>
+                            <span class="bolder-habi">Correo:</span> <a
+                                href="mailto:{{persona.correo}}">{{persona.correo}}</a>
                         </p>
                     </div>
                     <div class="card-body">
                         <div class="btn-group">
-                            <a class="btn btn-primary btn-sm" (click)="createInmueble(persona)">Crear inmueble</a>
+                            <a class="btn btn-primary btn-sm" [routerLink]="['/inmueble/crear/', persona.id]">Crear inmuebles</a>
                             <a class="btn btn-danger btn-sm" (click)="deletePropietario(persona)">Eliminar propietario</a>
                         </div>
                     </div>
                 </div>
-            </div><!--
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-shadow" style="width: 18rem;" value='{datos.id}'>
-                    <div class="text-center">
-                        <i class="bi bi-person-bounding-box icons-habi"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{datos.nombre}}</h5>
-                        <p class="card-text">
-                            <b>Tel:</b> {{datos.telefono}}<br>
-                            <b>Correo:</b> {{datos.correo}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-sm" [attr.data-datos-id]="datos.id">Crear inmueble</a>
-                            <a href="#" class="btn btn-danger btn-sm" [attr.data-datos-id]="datos.id">Eliminar propietario</a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+
         </div>
-
     </div>
-
 </div>

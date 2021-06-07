@@ -1,0 +1,52 @@
+<div class="margin-body">
+
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <h3 class="titles-habi">Países del mundo</h3>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
+            <div class="col-12">
+                <p>Aquí encontraras un listado de todos los países del mundo y algunos de sus datos más relevantes</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-1">
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">País</th>
+                                <th scope="col">Capital</th>
+                                <th scope="col">Población</th>
+                                <th scope="col">Idioma</th>
+                                <th scope="col">Área m²</th>
+                                <th scope="col" class="text-center">Bandera</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pais of paises; let i = index;">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{pais.name}}</td>
+                                <td>{{pais.capital}}</td>
+                                <td class="numbers">{{pais.population}}</td>
+                                <td>{{pais.nativeName}}</td>
+                                <td class="numbers">{{pais.area}}</td>
+                                <td class="text-center">
+                                    <img src="{{pais.flag}}" class="flag">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

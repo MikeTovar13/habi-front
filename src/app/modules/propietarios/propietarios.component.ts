@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PropietariosService } from './propietarios.service';
+import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
+import { SharedService } from 'src/app/shared/shared.service';
 
 interface propietariosModel {
   id: Int32Array;
@@ -18,10 +19,12 @@ export class PropietariosComponent implements OnInit {
 
   datos:propietariosModel[] = [] //{} as propietariosModel
 
-  constructor(private propietariosService: PropietariosService) { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.propietariosService.get().subscribe(
+    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/propietario/obtener";
+
+    this.sharedService.get(service).subscribe(
       (data:any) => {
         this.datos = data.propietarios
         console.log(data.propietarios);
@@ -36,8 +39,19 @@ export class PropietariosComponent implements OnInit {
 
   public deletePropietario(propietario: propietariosModel) {
     console.log(propietario.id);
-    alert('Aquí para eliminar');
-    this.ngOnInit();
+
+    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/propietario/eliminar";
+    let body = { 
+      "id": propietario.id
+    }
+
+    this.sharedService.post(service, body).subscribe(
+      (data:any) => {
+        alert(data.Mensaje);
+        this.ngOnInit();
+      }
+    );
+
   }
 
 }

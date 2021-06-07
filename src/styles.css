@@ -9,12 +9,24 @@
     background-color: var(--habi) !important;
 }
 
+.green {
+    color: #2dda0e;
+    font-weight: bold;
+}
+
+.red {
+    color: #dc3545;
+    font-weight: bold;
+
+}
+
 .margin-body {
     margin: 70px 20px;
 }
 
 .icons-habi {
     font-size: 80px;
+    color: rgb(67, 62, 71);
 }
 
 .card-shadow {
@@ -31,6 +43,24 @@
     display: none;
 }
 
+.flag {
+    width: 50%;
+    border: 1px solid black;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+#message_error {
+    display: none;
+    color: red;
+}
+
 .card-text {
     font-size: 0.80em;
     margin: 5px auto;
@@ -39,4 +69,41 @@
 .bolder-habi {
     font-weight: bold;
     margin-right: 5px;
+}
+
+.align-right {
+    margin: 10px auto 20px;
+    float: right;
+}
+
+.form-habi {
+    border: 1px solid silver;
+    margin: 10px auto;
+    padding: 25px;
+    font-size: 0.80em !important;
+}
+
+.dropdown-habi {
+    border: 1px solid silver !important;
+}
+
+.errorInput {
+    color: red !important;
+    border: red 1px solid !important;
+}
+
+.form-control, .form-select{
+ font-size: 0.90em !important;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+@media screen and (max-width: 768px) {
+    .align-right {
+        float: none;
+    }
 }

@@ -1,0 +1,183 @@
+<div class="margin-body">
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <h3 class="titles-habi">Crear Inmueble(s)</h3>
+            </div>
+            <div class="col">
+                <a class="btn btn-dark btn-sm align-right" routerLink="/propietarios"><i class="bi bi-chevron-left"></i>
+                    Volver</a>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
+            <div class="col-12">
+                <p>Aquí puedes crear tus inmuebles, con el botón "Agregar inmueble" puedes agregar una fila nueva de
+                    campos</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-1">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
+            <div class="col-12">
+                <a class="btn btn-success btn-sm align-right" (click)="adicionarInmueble()"> Agregar inmueble <i
+                        class="bi bi-plus-circle"></i></a>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-2">
+
+            <form [formGroup]="form">
+                <div formArrayName="inmuebles">
+
+                    <div *ngFor="let inmueble of campos.value; let i=index; trackBy:trackByFn">
+                        <div class="shadow-sm form-habi" formGroupName="{{i}}">
+
+                            <div class="mb-3">
+                                <h5 for="nombrePropietario" class="form-label">Inmueble n° {{i+1}} </h5>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="areaInput" class="col-form-label">Área: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="number" id="areaInput" class="form-control"
+                                        aria-describedby="areaHelpInline" formControlName="area"
+                                        [ngClass]="{'errorInput':errores(i).controls.area.errors && enviado}">
+                                </div>
+                                <div class="col-auto">
+                                    <span id="areaHelpInline" class="form-text">
+                                        Área en metros cuadrados. Ejemplo: 54
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="habitacionesInput" class="col-form-label">Habitaciones: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="number" id="habitacionesInput" class="form-control"
+                                        aria-describedby="habitacionesHelpInline" formControlName="habitaciones"
+                                        [ngClass]="{'errorInput':errores(i).controls.habitaciones.errors && enviado}">
+                                </div>
+                                <div class="col-auto">
+                                    <span id="habitacionesHelpInline" class="form-text">
+                                        Número total de habitaciones. Ejemplo: 3
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="direccionInput" class="col-form-label">Dirección: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="direccionInput" class="form-control"
+                                        aria-describedby="direccionHelpInline" formControlName="direccion"
+                                        [ngClass]="{'errorInput':errores(i).controls.direccion.errors && enviado}">
+                                </div>
+                                <div class="col-auto">
+                                    <span id="direccionHelpInline" class="form-text">
+                                        Dirección del inmueble. Ejemplo: Cra 50 # 80-20
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="precioInput" class="col-form-label">Precio: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="number" id="precioInput" class="form-control"
+                                        aria-describedby="precioHelpInline" formControlName="precio"
+                                        [ngClass]="{'errorInput':errores(i).controls.precio.errors && enviado}">
+                                </div>
+                                <div class="col-auto">
+                                    <span id="precioHelpInline" class="form-text">
+                                        Precio total de venta. Ejemplo: $100.000.000
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="ciudadInput" class="col-form-label">Ciudad: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <select formControlName="id_ciudad"
+                                        [ngClass]="{'errorInput':errores(i).controls.id_ciudad.errors && enviado}"
+                                        (change)="getLocalidades(i)" class="form-select" style="width: 200px;">
+                                        <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad.id">{{ciudad.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <span id="habitacionesHelpInline" class="form-text">
+                                        Ciudad donde se encuentra el inmueble. Ejemplo: Bogotá D.C.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 align-items-center mt-0">
+                                <div class="col-auto">
+                                    <label for="localidadSelect" class="col-form-label">Localidad: </label>
+                                </div>
+                                <div class="col-auto">
+                                    <select formControlName="id_localidad"
+                                        [ngClass]="{'errorInput':errores(i).controls.id_localidad.errors && enviado}" class="form-select" style="width: 200px;">
+                                        <option *ngFor="let localidad of localidad(i)" [ngValue]="localidad.id">
+                                            {{localidad.nombre}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <span id="habitacionesHelpInline" class="form-text">
+                                        Localidad de la ciudad del inmueble. Ejemplo: Chapinero
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mb-3">
+                    <label id="message_error">Todos los campos son obligatorios</label>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" (click)="enviar()">Crear <i
+                            class="bi bi-chevron-right"></i></button>
+                </div>
+
+            </form>
+
+            <!--
+            <form [formGroup]="form">
+                <div class="mb-3">
+                    <label for="nombrePropietario" class="form-label">Nombre del propietario</label>
+                    <input type="text" class="form-control" id="nombrePropietario" placeholder="Pedro Perez"
+                        formControlName="nombre" [ngClass]="{'errorInput':campos.nombre.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label for="telefonoPropietario" class="form-label">Teléfono</label>
+                    <input type="number" class="form-control" id="telefonoPropietario" placeholder="310-123-4567"
+                        formControlName="telefono" [ngClass]="{'errorInput':campos.telefono.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label for="emailPropietario" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailPropietario" placeholder="correo@example.com"
+                        formControlName="correo" [ngClass]="{'errorInput':campos.correo.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label id="message_error">Todos los campos son obligatorios</label>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" (click)="enviar()">Enviar <i class="bi bi-chevron-right"></i></button>
+                </div>
+            </form>
+            -->
+
+        </div>
+    </div>
+
+</div>

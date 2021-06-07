@@ -1,14 +1,49 @@
-<p>propietario works!</p>
+<div class="margin-body">
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <h3 class="titles-habi">Crear propietario</h3>
+            </div>
+            <div class="col">
+                <a class="btn btn-dark btn-sm align-right" routerLink="/propietarios"><i class="bi bi-chevron-left"></i> Volver</a>
+            </div>
+        </div>
 
-<form [formGroup]="form">
-    <label>Nombre</label>
-    <input type="text" formControlName="nombre" [ngClass]="{'errorInput':campos.nombre.errors && enviado}">
-    <br>
-    <label>Teléfono</label>
-    <input type="text" formControlName="telefono" [ngClass]="{'errorInput':campos.telefono.errors && enviado}">
-    <br>
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
+            <div class="col-12">
+                <p>Después de crear el propietario puedes crear los inmuebles desde la venta de "Propietarios" en el botón azul de "Crear Inmuebles"</p>
+            </div>
+        </div>
+    </div>
 
-    <button class="btn btn-primary" (click)="enviar()">Enviar</button>
-</form>
+    <div class="container-fluid mt-3">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
 
+            <form [formGroup]="form">
+                <div class="mb-3">
+                    <label for="nombrePropietario" class="form-label">Nombre del propietario</label>
+                    <input type="text" class="form-control" id="nombrePropietario" placeholder="Pedro Perez"
+                        formControlName="nombre" [ngClass]="{'errorInput':campos.nombre.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label for="telefonoPropietario" class="form-label">Teléfono</label>
+                    <input type="number" class="form-control" id="telefonoPropietario" placeholder="310-123-4567"
+                        formControlName="telefono" [ngClass]="{'errorInput':campos.telefono.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label for="emailPropietario" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailPropietario" placeholder="correo@example.com"
+                        formControlName="correo" [ngClass]="{'errorInput':campos.correo.errors && enviado}">
+                </div>
+                <div class="mb-3">
+                    <label id="message_error">Todos los campos son obligatorios</label>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" (click)="enviar()">Crear <i class="bi bi-chevron-right"></i></button>
+                </div>
+            </form>
 
+        </div>
+    </div>
+
+</div>
