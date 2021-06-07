@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
 import { SharedService } from 'src/app/shared/shared.service';
+import Swal from 'sweetalert2';
 
 interface selectModel {
   id: Int32Array;
@@ -78,7 +79,11 @@ export class InmuebleComponent implements OnInit {
       console.log(body)
       this.sharedService.post(service, body).subscribe(
         (data: any) => {
-          alert(data.Mensaje);
+          Swal.fire(
+            'Creado',
+            data.Mensaje,
+            'success'
+          )
           this._route.navigate(['/inmuebles'])
         }
       )

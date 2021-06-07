@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
 import { SharedService } from 'src/app/shared/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-propietario',
@@ -19,7 +20,7 @@ export class PropietarioComponent implements OnInit {
       {
         nombre: ["", Validators.required],
         telefono: ["", Validators.required],
-        correo: ["", Validators.required]
+        correo: ["", [Validators.required, Validators.email]]
       }
     )
   }
@@ -38,7 +39,11 @@ export class PropietarioComponent implements OnInit {
 
       this.sharedService.post(service, this.form.value).subscribe(
         (data: any) => {
-          alert(data.Mensaje);
+          Swal.fire(
+            'Creado',
+            data.Mensaje,
+            'success'
+          )
           this._route.navigate(['/propietarios'])
         }
       )

@@ -13,6 +13,8 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" (click)="orderBy('fecha', 0)"><i class="bi bi-arrow-up green"></i> Fecha creación </a></li>
                         <li><a class="dropdown-item" (click)="orderBy('fecha', 1)"><i class="bi bi-arrow-down red"></i> Fecha creación </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 0)"><i class="bi bi-arrow-up green"></i> Ciudad</a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 1)" ><i class="bi bi-arrow-down red"></i> Ciudad </a></li>
                         <li><a class="dropdown-item" (click)="orderBy('localidad', 0)"><i class="bi bi-arrow-up green"></i> Localidad</a></li>
                         <li><a class="dropdown-item" (click)="orderBy('localidad', 1)" ><i class="bi bi-arrow-down red"></i> Localidad </a></li>
                     </ul>
@@ -20,6 +22,7 @@
             </div>
         </div>
     </div>
+    
 
     <div class="container-fluid">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -39,6 +42,9 @@
                         </p>
                         <p class="card-text">
                             <span class="bolder-habi">Dirección:</span> {{inmueble.direccion}}
+                        </p>
+                        <p class="card-text">
+                            <span class="bolder-habi">Ciudad:</span> {{inmueble.ciudad}}
                         </p>
                         <p class="card-text">
                             <span class="bolder-habi">Localidad:</span> {{inmueble.localidad}}

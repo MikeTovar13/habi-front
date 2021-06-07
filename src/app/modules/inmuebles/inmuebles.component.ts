@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
 import { SharedService } from 'src/app/shared/shared.service';
+import Swal from 'sweetalert2';
 
 interface inmueblesModel {
   id: number;
@@ -10,6 +11,7 @@ interface inmueblesModel {
   direccion: string;
   localidad: string;
   propietario: string;
+  ciudad: string;
 }
 
 @Component({
@@ -46,17 +48,25 @@ export class InmueblesComponent implements OnInit {
   public deleteInmueble(inmueble: inmueblesModel) {
     console.log(inmueble.id);
 
-    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/eliminar";
-    let body = {
-      "id": inmueble.id
-    }
-
-    this.sharedService.post(service, body).subscribe(
-      (data: any) => {
-        alert(data.Mensaje);
-        this.ngOnInit();
+    this.sharedService.confirmDelete(()=>{
+      let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/eliminar";
+      let body = {
+        "id": inmueble.id
       }
-    );
+  
+      this.sharedService.post(service, body).subscribe(
+        (data: any) => {
+          Swal.fire(
+            'Eliminado',
+            data.Mensaje,
+            'success'
+          )
+          this.ngOnInit();
+        }
+      );
+
+    }, "Al eliminar un inmueble no se podrá recuperar la información.")
+
 
   }
 
@@ -68,8 +78,25 @@ export class InmueblesComponent implements OnInit {
     } else if (by === 1) {
       order ="DESC"
     }
-
+    
     console.log("organizar por ", tipo, "en orden ", order);
+
+    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/obtener";
+    let body = {
+      "pagina": 1,
+      "orden": {
+        "tipo": tipo,
+        "by": order
+      }
+    }
+
+    this.sharedService.post(service, body).subscribe(
+      (data: any) => {
+        this.inmuebles = data.inmuebles
+        console.log(data);
+      }
+    )
+    
 
   }
 

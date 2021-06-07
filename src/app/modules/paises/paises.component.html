@@ -24,6 +24,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">País</th>
                                 <th scope="col">Capital</th>
+                                <th scope="col">Moneda</th>
                                 <th scope="col">Población</th>
                                 <th scope="col">Idioma</th>
                                 <th scope="col">Área m²</th>
@@ -35,9 +36,10 @@
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{pais.name}}</td>
                                 <td>{{pais.capital}}</td>
+                                <td>({{pais.currencies[0].code}}) {{pais.currencies[0].name}}</td>
                                 <td class="numbers">{{pais.population}}</td>
-                                <td>{{pais.nativeName}}</td>
-                                <td class="numbers">{{pais.area}}</td>
+                                <td>{{pais.languages[0].nativeName}}</td>
+                                <td class="numbers">{{pais.area}} m²</td>
                                 <td class="text-center">
                                     <img src="{{pais.flag}}" class="flag">
                                 </td>

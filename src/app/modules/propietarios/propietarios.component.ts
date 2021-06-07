@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
 import { SharedService } from 'src/app/shared/shared.service';
+import Swal from 'sweetalert2';
 
 interface propietariosModel {
   id: Int32Array;
@@ -32,25 +33,30 @@ export class PropietariosComponent implements OnInit {
     )
   }
 
-  public createInmueble(propietario: propietariosModel) {
-    console.log(propietario.id);
-    alert('Aquí para crear');
-  }
-
   public deletePropietario(propietario: propietariosModel) {
+    
     console.log(propietario.id);
 
-    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/propietario/eliminar";
-    let body = { 
-      "id": propietario.id
-    }
-
-    this.sharedService.post(service, body).subscribe(
-      (data:any) => {
-        alert(data.Mensaje);
-        this.ngOnInit();
+    this.sharedService.confirmDelete(()=>{
+      let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/propietario/eliminar";
+      let body = { 
+        "id": propietario.id
       }
-    );
+  
+      this.sharedService.post(service, body).subscribe(
+        (data:any) => {
+          Swal.fire(
+            'Eliminado',
+            data.Mensaje,
+            'success'
+          )
+          this.ngOnInit();
+        }
+      );
+
+    },"Si eliminas un propietario también se eliminaran sus inmuebles")
+
+    
 
   }
 
