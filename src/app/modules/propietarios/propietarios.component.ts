@@ -33,6 +33,11 @@ export class PropietariosComponent implements OnInit {
     )
   }
 
+
+  /**
+   * Envio de peticion al back-end para eliminar propietario
+   * @param propietario objeto propietario para obtener id
+   */
   public deletePropietario(propietario: propietariosModel) {
     
     console.log(propietario.id);

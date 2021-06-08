@@ -25,10 +25,18 @@ export class PropietarioComponent implements OnInit {
     )
   }
 
+
+  /**
+   * Validacion de campos de formulario
+   */
   get campos() {
     return this.form.controls;
   }
 
+
+  /**
+   * Envio de peticion al back-end para crear propietario
+   */
   public enviar() {
     this.enviado = true;
     if (this.form.valid) {
@@ -52,8 +60,6 @@ export class PropietarioComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 
 }

@@ -5,29 +5,52 @@
             <div class="col">
                 <h3 class="titles-habi">Inmuebles</h3>
             </div>
+
+        </div>
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1">
             <div class="col">
-                <div class="btn-group align-right">
-                    <button class="btn btn-light btn-sm dropdown-toggle shadow-sm dropdown-habi" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Ordenar por
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" (click)="orderBy('fecha', 0)"><i class="bi bi-arrow-up green"></i> Fecha creación </a></li>
-                        <li><a class="dropdown-item" (click)="orderBy('fecha', 1)"><i class="bi bi-arrow-down red"></i> Fecha creación </a></li>
-                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 0)"><i class="bi bi-arrow-up green"></i> Ciudad</a></li>
-                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 1)" ><i class="bi bi-arrow-down red"></i> Ciudad </a></li>
-                        <li><a class="dropdown-item" (click)="orderBy('localidad', 0)"><i class="bi bi-arrow-up green"></i> Localidad</a></li>
-                        <li><a class="dropdown-item" (click)="orderBy('localidad', 1)" ><i class="bi bi-arrow-down red"></i> Localidad </a></li>
-                    </ul>
-                  </div>
+                <p>Aquí encontraras el listado de todos los inmuebles en el sistema</p>
             </div>
         </div>
     </div>
 
 
     <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col">
+                <div class="btn-group align-left">
+                    <div class="shadow-sm">
+                        <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="btn-group align-right">
+                    <button class="btn btn-light btn-sm dropdown-toggle shadow-sm dropdown-habi" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Ordenar por
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="orderBy('fecha', 0)"><i class="bi bi-arrow-up green"></i>
+                                Fecha creación </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('fecha', 1)"><i class="bi bi-arrow-down red"></i>
+                                Fecha creación </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 0)"><i class="bi bi-arrow-up green"></i>
+                                Ciudad</a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('ciudad', 1)"><i class="bi bi-arrow-down red"></i>
+                                Ciudad </a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('localidad', 0)"><i
+                                    class="bi bi-arrow-up green"></i> Localidad</a></li>
+                        <li><a class="dropdown-item" (click)="orderBy('localidad', 1)"><i
+                                    class="bi bi-arrow-down red"></i> Localidad </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-            
-            <div class="col" *ngFor="let inmueble of inmuebles | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
+            <div class="col"
+                *ngFor="let inmueble of inmuebles | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
                 <div class="card card-shadow" style="width: 18rem;">
                     <div class="text-center">
                         <i class="bi bi-house-door-fill icons-habi"></i>
@@ -56,15 +79,13 @@
                     </div>
                     <div class="card-body">
                         <div class=" text-center">
-                            <a class="btn btn-danger btn-sm" (click)="deleteInmueble(inmueble)" >Eliminar inmueble <i
-                                class="bi bi-trash"></i></a>
+                            <a class="btn btn-danger btn-sm" (click)="deleteInmueble(inmueble)">Eliminar inmueble <i
+                                    class="bi bi-trash"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
-            
         </div>
     </div>
 </div>

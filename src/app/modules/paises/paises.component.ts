@@ -34,6 +34,16 @@ export class PaisesComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
+
+    // Carga de paises
+    this.getPaises();
+    
+  }
+
+  /**
+   * Envio de peticion para obtener paises al servicio
+   */
+  private getPaises() {
     let service = CONSTANTES_PROYECTO.API_PAISES;
 
     this.sharedService.get(service).subscribe(
@@ -51,6 +61,12 @@ export class PaisesComponent implements OnInit {
     )
   }
 
+
+  /**
+   * formateo de numeros para mostrar en la vista
+   * @param value numero que se quiere poner puntuacion para formateo
+   * @returns numero formateado
+   */
   private changesNumber(value: number) {
     if (value)
       return value.toLocaleString("en-US")

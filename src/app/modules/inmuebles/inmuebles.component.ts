@@ -23,27 +23,33 @@ interface inmueblesModel {
 export class InmueblesComponent implements OnInit {
 
   inmuebles: inmueblesModel[] = []
-  p:number = 1;
+  p: number = 1;
   total: number = 0;
-  tipo:string = "fecha"
-  order:string = "DESC"
+  tipo: string = "fecha"
+  order: string = "DESC"
 
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
 
+    // Carga inicial de inmuebles
     this.getPage(this.p)
   }
 
+
+  /**
+   * Envio de peticion para eliminar inmueble al back-end
+   * @param inmueble 
+   */
   public deleteInmueble(inmueble: inmueblesModel) {
     console.log(inmueble.id);
 
-    this.sharedService.confirmDelete(()=>{
+    this.sharedService.confirmDelete(() => {
       let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/eliminar";
       let body = {
         "id": inmueble.id
       }
-  
+
       this.sharedService.post(service, body).subscribe(
         (data: any) => {
           Swal.fire(
@@ -59,8 +65,13 @@ export class InmueblesComponent implements OnInit {
 
 
   }
-  getPage(p:number){
-    this.p=p
+
+  /**
+   * Carga de inmuebles segun la pagina del paginador
+   * @param p Pagina en la cual se encuentra el paginador
+   */
+  getPage(p: number) {
+    this.p = p
     let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/obtener";
     let body = {
       "pagina": this.p,
@@ -78,13 +89,19 @@ export class InmueblesComponent implements OnInit {
       }
     )
   }
+
+  /**
+   * Envio de peticion para ordenar inmuebles según los parametros al back-end
+   * @param tipo campo para organizar
+   * @param by direccion de organizacion 0 or 1
+   */
   public orderBy(tipo: string, by: number) {
     var order = "";
-    
+
     if (by === 0) {
       order = "ASC"
     } else if (by === 1) {
-      order ="DESC"
+      order = "DESC"
     }
     this.tipo = tipo
     this.order = order

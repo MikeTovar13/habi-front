@@ -76,6 +76,24 @@
     float: right;
 }
 
+.align-left {
+    margin: 10px auto 20px;
+    float: left;
+}
+
+.ngx-pagination {
+    margin: 0 auto !important;
+    border: 1px solid silver;
+    padding: 1px;
+    border-radius: 4px;
+    background-color: #f8f9fa !important;
+}
+
+.ngx-pagination .current {
+    background-color: #7c01ff !important;
+    border-radius: 5px;
+}
+
 .form-habi {
     border: 1px solid silver;
     margin: 10px auto;

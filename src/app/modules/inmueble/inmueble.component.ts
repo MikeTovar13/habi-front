@@ -5,6 +5,7 @@ import { CONSTANTES_PROYECTO } from 'src/app/shared/shared.config';
 import { SharedService } from 'src/app/shared/shared.service';
 import Swal from 'sweetalert2';
 
+
 interface selectModel {
   id: Int32Array;
   nombre: string;
@@ -32,10 +33,16 @@ export class InmuebleComponent implements OnInit {
       }
     )
     this.control = <FormArray>this.form.controls.inmuebles
-    this.control.push(this.newInmueble(0))
+    this.control.push(this.newInmueble(0)) // Formulario inicial
     console.log(this.form)
   }
 
+
+  /**
+   * Crear nuevo campo para inmueble
+   * @param i Posicion inicial para crear siguiente formulario
+   * @returns Form apra inmueble nuevo
+   */
   private newInmueble(i: number) {
     this.localidades["localidad" + i] = [] as selectModel[]
     return this.formBuilder.group({
@@ -48,25 +55,47 @@ export class InmuebleComponent implements OnInit {
     })
 
   }
-  public adicionarInmueble(){
+
+  /**
+   * Accion de boton para crear nuevo html de formulario
+   */
+  public adicionarInmueble() {
     this.control.push(this.newInmueble(this.control.length))
   }
 
+  /**
+   * Validacion de campos de formulario
+   */
   get campos() {
     return this.form.controls.inmuebles as FormArray;
   }
 
-  errores(i: number) {
+  /**
+   * Validacion de campos de form
+   * @param i Formulario al cual verificar los campos
+   * @returns 
+   */
+  public errores(i: number) {
     return this.campos.controls[i] as FormGroup
   }
 
-  localidad(i:number){
-    return this.localidades["localidad"+i]
+  /**
+   * Cargar localidades para formulario 
+   * @param i Formulario al cual se cargaran las localidades
+   * @returns 
+   */
+  public localidad(i: number) {
+    return this.localidades["localidad" + i]
   }
-  trackByFn(index: any, item: any) {
-    return index;
- }
 
+  public trackByFn(index: any, item: any) {
+    return index;
+  }
+
+
+  /**
+   * Envio de peticion al back-end para crear inmueble
+   */
   public enviar() {
     console.log(this.form)
     this.enviado = true;
@@ -93,7 +122,12 @@ export class InmuebleComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Obtener ciudades del back-end
+   */
   private getCiudades() {
+
     let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/utils/ciudades";
 
     this.sharedService.get(service).subscribe(
@@ -104,13 +138,18 @@ export class InmuebleComponent implements OnInit {
     )
   }
 
-  public getLocalidades(i: number) {
-    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/utils/localidades?id=" + this.errores(i).value.id_ciudad;
 
+  /**
+   * obtener localidades del back-end
+   * @param i id de la ciudad para obtener las localidades
+   */
+  public getLocalidades(i: number) {
+
+    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/utils/localidades?id=" + this.errores(i).value.id_ciudad;
 
     this.sharedService.get(service).subscribe(
       (data: any) => {
-        this.localidades["localidad"+i] = data.localidades
+        this.localidades["localidad" + i] = data.localidades
         console.log(data.localidades);
       }
     )
@@ -118,11 +157,13 @@ export class InmuebleComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Get id del propietario
     this.route.params.subscribe(params => {
       this.id_propietario = params["id_propietario"];
       console.log(this.id_propietario);
     })
 
+    // Cargar ciudades iniciales para crear inmueble
     this.getCiudades();
 
 
