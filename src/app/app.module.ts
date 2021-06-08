@@ -14,6 +14,7 @@ import { InmueblesComponent } from './modules/inmuebles/inmuebles.component';
 import { InmuebleComponent } from './modules/inmueble/inmueble.component';
 import { InicioComponent } from './modules/inicio/inicio.component';
 import { PaisesComponent } from './modules/paises/paises.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   {path: "", component: InicioComponent}, 
@@ -41,7 +42,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

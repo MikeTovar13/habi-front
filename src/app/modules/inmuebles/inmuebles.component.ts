@@ -23,26 +23,16 @@ interface inmueblesModel {
 export class InmueblesComponent implements OnInit {
 
   inmuebles: inmueblesModel[] = []
+  p:number = 1;
+  total: number = 0;
+  tipo:string = "fecha"
+  order:string = "DESC"
 
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
 
-    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/obtener";
-    let body = {
-      "pagina": 1,
-      "orden": {
-        "tipo": "fecha",
-        "by": "DESC"
-      }
-    }
-
-    this.sharedService.post(service, body).subscribe(
-      (data: any) => {
-        this.inmuebles = data.inmuebles
-        console.log(data);
-      }
-    )
+    this.getPage(this.p)
   }
 
   public deleteInmueble(inmueble: inmueblesModel) {
@@ -69,7 +59,25 @@ export class InmueblesComponent implements OnInit {
 
 
   }
+  getPage(p:number){
+    this.p=p
+    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/obtener";
+    let body = {
+      "pagina": this.p,
+      "orden": {
+        "tipo": this.tipo,
+        "by": this.order
+      }
+    }
 
+    this.sharedService.post(service, body).subscribe(
+      (data: any) => {
+        this.inmuebles = data.inmuebles
+        this.total = data.total
+        console.log(data);
+      }
+    )
+  }
   public orderBy(tipo: string, by: number) {
     var order = "";
     
@@ -78,25 +86,9 @@ export class InmueblesComponent implements OnInit {
     } else if (by === 1) {
       order ="DESC"
     }
-    
-    console.log("organizar por ", tipo, "en orden ", order);
-
-    let service = CONSTANTES_PROYECTO.BASE_URL + "/v1/inmueble/obtener";
-    let body = {
-      "pagina": 1,
-      "orden": {
-        "tipo": tipo,
-        "by": order
-      }
-    }
-
-    this.sharedService.post(service, body).subscribe(
-      (data: any) => {
-        this.inmuebles = data.inmuebles
-        console.log(data);
-      }
-    )
-    
+    this.tipo = tipo
+    this.order = order
+    this.getPage(this.p)
 
   }
 
